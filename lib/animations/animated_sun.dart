@@ -27,7 +27,7 @@ class _AnimatedSunState extends State<AnimatedSun>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _animation,
-      child: Image.asset('images/sun.png'),
+      child: Image.asset('images/sun.gif'),
     );
   }
 }
