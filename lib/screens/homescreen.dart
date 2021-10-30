@@ -96,81 +96,212 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: screenH * 0.15,
+              height: 0.10,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '24.98\u2103 ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          Text(
+                            ": Min Temp",
+                            style: TextStyle(
+                                fontSize: screenW / 20,
+                                fontFamily: 'Zen',
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: screenH * 0.01,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '24.98\u2103 ',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          Text(
+                            " : Max Temp",
+                            style: TextStyle(
+                                fontSize: screenW / 20,
+                                fontFamily: 'Zen',
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: screenH * 0.06,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Latitude',
-                    style: TextStyle(
-                        fontSize: screenW / 20,
-                        fontFamily: 'Zen',
-                        color: Colors.white),
+                  Row(
+                    children: [
+                      Text(
+                        'Latitude   : ',
+                        style: TextStyle(
+                            fontSize: screenW / 20,
+                            fontFamily: 'Zen',
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: screenW * 0.01,
+                      ),
+                      Text(
+                        '22.3',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Longitude',
-                    style: TextStyle(
-                        fontSize: screenW / 20,
-                        fontFamily: 'Zen',
-                        color: Colors.white),
+                  SizedBox(
+                    height: screenH * 0.01,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Longitude : ',
+                        style: TextStyle(
+                            fontSize: screenW / 20,
+                            fontFamily: 'Zen',
+                            color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: screenW * 0.01,
+                      ),
+                      Text(
+                        '73.2',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ],
                   )
                 ],
               ),
             ),
             SizedBox(
-              height: screenH * 0.03,
+              height: screenH * 0.05,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenW / 20),
+              padding: EdgeInsets.symmetric(horizontal: screenW / 25),
               child: Container(
                 height: screenH * 0.12,
-                width: screenW * 0.90,
+                width: screenW * 0.92,
                 decoration: BoxDecoration(
                     border: Border.all(width: 0.2, color: Colors.white),
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(15)),
                 child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Pressure",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Zen',
-                              fontSize: screenW / 20,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 29, vertical: 15),
+                    child: Row(
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "Pressure",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Zen',
+                                    fontSize: screenW / 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: screenH * 0.01,
+                                ),
+                                Text(
+                                  '1014',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ],
                             ),
-                          ),
-                          SizedBox(
-                            width: screenW * 0.07,
-                          ),
-                          Text(
-                            "Humidity",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Zen',
-                              fontSize: screenW / 20,
+                            SizedBox(
+                              width: screenW * 0.07,
                             ),
-                          ),
-                          SizedBox(
-                            width: screenW * 0.07,
-                          ),
-                          Text(
-                            "Feels Like",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Zen',
-                              fontSize: screenW / 20,
+                            Column(
+                              children: [
+                                Text(
+                                  "Humidity",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Zen',
+                                    fontSize: screenW / 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: screenH * 0.01,
+                                ),
+                                Text(
+                                  '33',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            SizedBox(
+                              width: screenW * 0.07,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  "Feels Like",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Zen',
+                                    fontSize: screenW / 20,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: screenH * 0.01,
+                                ),
+                                Text(
+                                  '31.16 \u2103',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
