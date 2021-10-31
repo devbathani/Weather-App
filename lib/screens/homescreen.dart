@@ -1,24 +1,37 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:weather_app/Api%20Manager/api_manager.dart';
 import 'package:weather_app/animations/animated_sun.dart';
 import 'package:weather_app/model/weather_model.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var theme;
 
   @override
   Widget build(BuildContext context) {
     var screenH = MediaQuery.of(context).size.height;
     var screenW = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      body: Container(
+    Widget change() {
+      if (DateTime.now().hour >= 1 && DateTime.now().hour <= 12) {
+        setState(() {
+          theme = 'images/morning.jpg';
+        });
+      } else if (DateTime.now().hour >= 13 && DateTime.now().hour <= 24) {
+        setState(() {
+          theme = 'images/night.jpg';
+        });
+      }
+      return Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/night.jpg'),
+            image: AssetImage(theme),
             fit: BoxFit.cover,
           ),
         ),
@@ -28,7 +41,7 @@ class HomeScreen extends StatelessWidget {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
               case ConnectionState.waiting:
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               case ConnectionState.active:
               case ConnectionState.done:
                 if (snapshot.hasData) {
@@ -78,10 +91,10 @@ class HomeScreen extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                            SizedBox(width: screenW * 0.14),
+                            SizedBox(width: screenW * 0.20),
                             Padding(
                               padding:
                                   EdgeInsets.symmetric(vertical: screenH / 40),
@@ -297,7 +310,7 @@ class HomeScreen extends StatelessWidget {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 20),
+                                                fontSize: screenW / 20),
                                           ),
                                         ],
                                       ),
@@ -323,7 +336,7 @@ class HomeScreen extends StatelessWidget {
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 20),
+                                                fontSize: screenW / 20),
                                           ),
                                         ],
                                       ),
@@ -375,12 +388,16 @@ class HomeScreen extends StatelessWidget {
                     ],
                   );
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
             }
           },
         ),
-      ),
+      );
+    }
+
+    return Scaffold(
+      body: change(),
     );
   }
 }

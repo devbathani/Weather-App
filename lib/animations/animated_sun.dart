@@ -9,6 +9,34 @@ class AnimatedSun extends StatefulWidget {
 
 class _AnimatedSunState extends State<AnimatedSun>
     with SingleTickerProviderStateMixin {
+  var sun = 'images/sun.gif';
+  var moon = 'images/moon.png';
+
+  Widget Sun() {
+    return Image.asset(sun);
+  }
+
+  Widget Moon() {
+    return Image.asset(moon);
+  }
+
+  var theme;
+
+  Widget change() {
+    if (DateTime.now().hour >= 1 && DateTime.now().hour <= 12) {
+      setState(() {
+        Sun();
+        theme = Sun();
+      });
+    } else if (DateTime.now().hour >= 13 && DateTime.now().hour <= 24) {
+      setState(() {
+        Moon();
+        theme = Moon();
+      });
+    }
+    return theme;
+  }
+
   late final AnimationController _controller =
       AnimationController(vsync: this, duration: const Duration(seconds: 2))
         ..repeat(reverse: true);
@@ -27,7 +55,7 @@ class _AnimatedSunState extends State<AnimatedSun>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _animation,
-      child: Image.asset('images/moon.png'),
+      child: change(),
     );
   }
 }
