@@ -7,13 +7,14 @@ class WeatherModel {
   });
 
   Coord coord;
-  Weather weather;
+  List<Weather> weather;
   Main main;
   String name;
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) => WeatherModel(
         coord: Coord.fromJson(json["coord"]),
-        weather: Weather.fromJson(json["weather"]),
+        weather:
+            List<Weather>.from(json['weather'].map((e) => Weather.fromJson(e))),
         main: Main.fromJson(json["main"]),
         name: json["name"],
       );

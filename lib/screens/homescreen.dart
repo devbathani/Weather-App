@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: FutureBuilder<List<WeatherModel>>(
+        child: FutureBuilder<WeatherModel>(
           future: Api_Manager().getWeatherData(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
@@ -32,209 +32,134 @@ class HomeScreen extends StatelessWidget {
               case ConnectionState.active:
               case ConnectionState.done:
                 if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: screenH * 0.10,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: screenW / 15),
-                            child: Row(
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: screenH * 0.10,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenW / 15),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      snapshot.data![index].name,
-                                      style: TextStyle(
-                                        fontSize: screenW / 11,
-                                        fontFamily: 'Zen',
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: screenH * 0.04,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: screenW / 99),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            snapshot.data![index].main.temp
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontSize: screenW / 5,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                          Text(
-                                            '\u2103',
-                                            style: TextStyle(
-                                                fontSize: screenW / 5,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
+                                Text(
+                                  snapshot.data!.name,
+                                  style: TextStyle(
+                                    fontSize: screenW / 11,
+                                    fontFamily: 'Zen',
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                SizedBox(width: screenW * 0.14),
+                                SizedBox(
+                                  height: screenH * 0.04,
+                                ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: screenH / 40),
-                                  child: Container(
-                                    width: screenW * 0.12,
-                                    height: screenH * 0.15,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 0.2, color: Colors.white),
-                                        color: Colors.white.withOpacity(0.2),
-                                        borderRadius:
-                                            BorderRadius.circular(12)),
-                                    child: Center(
-                                      child: RotatedBox(
-                                        quarterTurns: 3,
-                                        child: Text(
-                                          snapshot.data![index].weather.main,
-                                          style: TextStyle(
-                                              fontSize: screenW / 13.5,
-                                              fontFamily: 'Zen',
-                                              color: Colors.white),
-                                        ),
+                                      horizontal: screenW / 99),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        snapshot.data!.main.temp.toString(),
+                                        style: TextStyle(
+                                            fontSize: screenW / 6,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
                                       ),
-                                    ),
+                                      Text(
+                                        '\u2103',
+                                        style: TextStyle(
+                                            fontSize: screenW / 6,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      )
+                                    ],
                                   ),
                                 )
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: screenH * 0.01,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: screenW / 2.5),
-                            child: Container(
-                              height: screenH * 0.23,
-                              width: screenW * 0.23,
-                              child: AnimatedSun(),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 0.10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              snapshot.data![index].main.tempMin
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: screenW / 20),
-                                            ),
-                                            Text(
-                                              '\u2103',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: screenW / 20),
-                                            )
-                                          ],
-                                        ),
-                                        Text(
-                                          ": Min Temp",
-                                          style: TextStyle(
-                                              fontSize: screenW / 20,
-                                              fontFamily: 'Zen',
-                                              color: Colors.white),
-                                        ),
-                                      ],
+                            SizedBox(width: screenW * 0.14),
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(vertical: screenH / 40),
+                              child: Container(
+                                width: screenW * 0.12,
+                                height: screenH * 0.15,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 0.2, color: Colors.white),
+                                    color: Colors.white.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: Center(
+                                  child: RotatedBox(
+                                    quarterTurns: 3,
+                                    child: Text(
+                                      snapshot.data!.weather[0].main,
+                                      style: TextStyle(
+                                          fontSize: screenW / 13.5,
+                                          fontFamily: 'Zen',
+                                          color: Colors.white),
                                     ),
-                                    SizedBox(
-                                      height: screenH * 0.01,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              snapshot.data![index].main.tempMax
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: screenW / 20),
-                                            ),
-                                            Text(
-                                              "\u2103",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: screenW / 20),
-                                            )
-                                          ],
-                                        ),
-                                        Text(
-                                          " : Max Temp",
-                                          style: TextStyle(
-                                              fontSize: screenW / 20,
-                                              fontFamily: 'Zen',
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: screenH * 0.06,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: screenH * 0.01,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: screenW / 2.5),
+                        child: Container(
+                          height: screenH * 0.23,
+                          width: screenW * 0.23,
+                          child: AnimatedSun(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 0.10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
                               children: [
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          snapshot.data!.main.tempMin
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: screenW / 20),
+                                        ),
+                                        Text(
+                                          '\u2103',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: screenW / 20),
+                                        )
+                                      ],
+                                    ),
                                     Text(
-                                      'Latitude   : ',
+                                      ": Min Temp",
                                       style: TextStyle(
                                           fontSize: screenW / 20,
                                           fontFamily: 'Zen',
                                           color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      width: screenW * 0.01,
-                                    ),
-                                    Text(
-                                      snapshot.data![index].coord.lat
-                                          .toString(),
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: screenW / 20),
                                     ),
                                   ],
                                 ),
@@ -243,153 +168,211 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          snapshot.data!.main.tempMax
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: screenW / 20),
+                                        ),
+                                        Text(
+                                          "\u2103",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: screenW / 20),
+                                        )
+                                      ],
+                                    ),
                                     Text(
-                                      'Longitude : ',
+                                      " : Max Temp",
                                       style: TextStyle(
                                           fontSize: screenW / 20,
                                           fontFamily: 'Zen',
                                           color: Colors.white),
                                     ),
-                                    SizedBox(
-                                      width: screenW * 0.01,
-                                    ),
-                                    Text(
-                                      snapshot.data![index].coord.lon
-                                          .toString(),
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: screenW / 20),
-                                    ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
-                          ),
-                          SizedBox(
-                            height: screenH * 0.05,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: screenW / 25),
-                            child: Container(
-                              height: screenH * 0.12,
-                              width: screenW * 0.92,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 0.2, color: Colors.white),
-                                  color: Colors.white.withOpacity(0.2),
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 29, vertical: 15),
-                                  child: Row(
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: screenH * 0.06,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Latitude   : ',
+                                  style: TextStyle(
+                                      fontSize: screenW / 20,
+                                      fontFamily: 'Zen',
+                                      color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: screenW * 0.01,
+                                ),
+                                Text(
+                                  snapshot.data!.coord.lat.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenW / 20),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: screenH * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Longitude : ',
+                                  style: TextStyle(
+                                      fontSize: screenW / 20,
+                                      fontFamily: 'Zen',
+                                      color: Colors.white),
+                                ),
+                                SizedBox(
+                                  width: screenW * 0.01,
+                                ),
+                                Text(
+                                  snapshot.data!.coord.lon.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: screenW / 20),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: screenH * 0.05,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: screenW / 25),
+                        child: Container(
+                          height: screenH * 0.12,
+                          width: screenW * 0.92,
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(width: 0.2, color: Colors.white),
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 29, vertical: 15),
+                              child: Row(
+                                children: [
+                                  Row(
                                     children: [
-                                      Row(
+                                      Column(
                                         children: [
-                                          Column(
+                                          Text(
+                                            "Pressure",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Zen',
+                                              fontSize: screenW / 20,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: screenH * 0.01,
+                                          ),
+                                          Text(
+                                            snapshot.data!.main.pressure
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: screenW * 0.07,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            "Humidity",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Zen',
+                                              fontSize: screenW / 20,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: screenH * 0.01,
+                                          ),
+                                          Text(
+                                            snapshot.data!.main.humidity
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: screenW * 0.07,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            "Feels Like",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Zen',
+                                              fontSize: screenW / 20,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: screenH * 0.01,
+                                          ),
+                                          Row(
                                             children: [
                                               Text(
-                                                "Pressure",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Zen',
-                                                  fontSize: screenW / 20,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: screenH * 0.01,
-                                              ),
-                                              Text(
-                                                snapshot
-                                                    .data![index].main.pressure
+                                                snapshot.data!.main.feelsLike
                                                     .toString(),
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 20),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: screenW * 0.07,
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text(
-                                                "Humidity",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Zen',
-                                                  fontSize: screenW / 20,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: screenH * 0.01,
+                                                    fontSize: screenW / 20),
                                               ),
                                               Text(
-                                                snapshot
-                                                    .data![index].main.humidity
-                                                    .toString(),
+                                                '\u2103',
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 20),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: screenW * 0.07,
-                                          ),
-                                          Column(
-                                            children: [
-                                              Text(
-                                                "Feels Like",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Zen',
-                                                  fontSize: screenW / 20,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: screenH * 0.01,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    snapshot.data![index].main
-                                                        .feelsLike
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: screenW / 20),
-                                                  ),
-                                                  Text(
-                                                    '\u2103',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: screenW / 20),
-                                                  )
-                                                ],
-                                              ),
+                                                    fontSize: screenW / 20),
+                                              )
                                             ],
                                           ),
                                         ],
                                       ),
                                     ],
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ),
-                        ],
-                      );
-                    },
+                        ),
+                      ),
+                    ],
                   );
                 } else {
                   return Center(child: CircularProgressIndicator());
