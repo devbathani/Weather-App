@@ -17,13 +17,6 @@ class WeatherModel {
         main: Main.fromJson(json["main"]),
         name: json["name"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "coord": coord.toJson(),
-        "weather": weather.toJson(),
-        "main": main.toJson(),
-        "name": name,
-      };
 }
 
 class Coord {
@@ -39,11 +32,6 @@ class Coord {
         lon: json["lon"].toDouble(),
         lat: json["lat"].toDouble(),
       );
-
-  Map<String, dynamic> toJson() => {
-        "lon": lon,
-        "lat": lat,
-      };
 }
 
 class Main {
@@ -71,15 +59,6 @@ class Main {
         pressure: json["pressure"],
         humidity: json["humidity"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "temp": temp,
-        "feels_like": feelsLike,
-        "temp_min": tempMin,
-        "temp_max": tempMax,
-        "pressure": pressure,
-        "humidity": humidity,
-      };
 }
 
 class Weather {
@@ -92,8 +71,4 @@ class Weather {
   factory Weather.fromJson(Map<String, dynamic> json) => Weather(
         main: json["main"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "main": main,
-      };
 }
