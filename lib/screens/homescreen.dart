@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:weather_app/Api%20Manager/api_manager.dart';
-import 'package:weather_app/animations/animated_sun.dart';
+import 'package:weather_app/animations/animated_sun_and_moon.dart';
 import 'package:weather_app/model/weather_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Container(
                               height: screenH * 0.15,
                               width: screenW * 0.20,
-                              child: AnimatedSun(),
+                              child: AnimatedSunandMoon(),
                             ),
                           ),
                           SizedBox(height: screenH * 0.07),

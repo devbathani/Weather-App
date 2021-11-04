@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AnimatedSun extends StatefulWidget {
-  const AnimatedSun({Key? key}) : super(key: key);
+class AnimatedSunandMoon extends StatefulWidget {
+  const AnimatedSunandMoon({Key? key}) : super(key: key);
 
   @override
-  _AnimatedSunState createState() => _AnimatedSunState();
+  _AnimatedSunandMoonState createState() => _AnimatedSunandMoonState();
 }
 
-class _AnimatedSunState extends State<AnimatedSun>
+class _AnimatedSunandMoonState extends State<AnimatedSunandMoon>
     with SingleTickerProviderStateMixin {
   var sun = 'images/sun.gif';
   var moon = 'images/moon.png';
@@ -31,6 +31,10 @@ class _AnimatedSunState extends State<AnimatedSun>
     } else if (DateTime.now().hour >= 18 && DateTime.now().hour <= 5) {
       setState(() {
         Moon();
+        theme = Moon();
+      });
+    } else {
+      setState(() {
         theme = Moon();
       });
     }
