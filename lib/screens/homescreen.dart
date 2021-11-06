@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var theme;
+  var theme = '';
   final _textcontroller = TextEditingController();
   String city = 'vadodara';
 
@@ -22,13 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
     var screenH = MediaQuery.of(context).size.height;
     var screenW = MediaQuery.of(context).size.width;
     Widget change() {
-      if (DateTime.now().hour >= 6 && DateTime.now().hour < 18) {
+      if (DateTime.now().hour >= 6 && DateTime.now().hour <= 18) {
         setState(() {
           theme = 'images/morning.jpg';
-        });
-      } else if (DateTime.now().hour >= 18 && DateTime.now().hour <= 5) {
-        setState(() {
-          theme = 'images/night.jpg';
         });
       } else {
         setState(() {

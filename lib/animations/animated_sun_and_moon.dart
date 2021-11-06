@@ -23,15 +23,10 @@ class _AnimatedSunandMoonState extends State<AnimatedSunandMoon>
   var theme;
 
   Widget change() {
-    if (DateTime.now().hour >= 6 && DateTime.now().hour < 18) {
+    if (DateTime.now().hour >= 6 && DateTime.now().hour <= 18) {
       setState(() {
         Sun();
         theme = Sun();
-      });
-    } else if (DateTime.now().hour >= 18 && DateTime.now().hour <= 5) {
-      setState(() {
-        Moon();
-        theme = Moon();
       });
     } else {
       setState(() {
